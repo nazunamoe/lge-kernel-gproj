@@ -35,6 +35,7 @@ config ARM
 	select HAVE_SPARSE_IRQ
 	select HAVE_ARCH_SECCOMP_FILTER
 	select GENERIC_IRQ_SHOW
+	select IRQ_FORCED_THREADING
 	select CPU_PM if (SUSPEND || CPU_IDLE)
 	select GENERIC_PCI_IOMAP
 	select HAVE_BPF_JIT if NET
@@ -1841,7 +1842,7 @@ config HAVE_ARCH_PFN_VALID
 
 config HIGHMEM
 	bool "High Memory Support"
-	depends on MMU
+	depends on MMU && !PREEMPT_RT_FULL
 	help
 	  The address space of ARM processors is only 4 Gigabytes large
 	  and it has to accommodate user address space, kernel address
